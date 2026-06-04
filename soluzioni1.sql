@@ -1,21 +1,21 @@
 /*
 1. Selezionare tutti gli studenti nati nel 1990  
 */
-SELECT COUNT(`students`.`date_of_birth`)
+SELECT *
 FROM `students`
 WHERE YEAR (`students`.`date_of_birth`) = "1990%" ;
 
 /*
 2. Selezionare tutti i corsi che valgono più di 10 crediti 
 */
-SELECT COUNT(`courses`.`cfu`)
+SELECT *
 FROM `courses`
 WHERE `courses`.`cfu` > "10";
 
 /*
 3. Selezionare tutti gli studenti che hanno più di 30 anni 
 */
-SELECT `students`.`date_of_birth`
+SELECT *
 FROM `students`
 WHERE YEAR (`students`.`date_of_birth`) <= "1996%" ;
 
@@ -23,7 +23,7 @@ WHERE YEAR (`students`.`date_of_birth`) <= "1996%" ;
 4. Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di
 laurea (286)
 */
-SELECT COUNT(*), `courses`.`period`, `courses`.`year` 
+SELECT * 
 FROM `courses`
 WHERE `courses`.`period` = "I semestre" AND `courses`.`year` = "1";
 
@@ -31,7 +31,7 @@ WHERE `courses`.`period` = "I semestre" AND `courses`.`year` = "1";
 5. Selezionare tutti gli appelli d'esame che avvengono nel pomeriggio (dopo le 14) del
 20/06/2020 (21)
 */
-SELECT COUNT(*)
+SELECT *
 FROM `exams`
 WHERE `exams`.`date` = "2020-06-20" 
 	AND `exams`.`hour` > "14:00"
@@ -40,7 +40,7 @@ WHERE `exams`.`date` = "2020-06-20"
 /*
 6. Selezionare tutti i corsi di laurea magistrale (38)
 */
-SELECT COUNT(`degrees`.`name`)
+SELECT `degrees`.`name`
 FROM `degrees`
 WHERE `degrees`.`name` LIKE "%laurea magistrale%";
 
