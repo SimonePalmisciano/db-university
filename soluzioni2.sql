@@ -70,3 +70,43 @@ FROM `teachers` AS `t`
 	JOIN `departments`
 		ON `degrees`.`department_id` = `departments`.`id`
 WHERE `departments`.`name` = "dipartimento di matematica";
+
+
+/* GROPU BY */
+/*
+1. Contare quanti iscritti ci sono stati ogni anno
+*/
+SELECT YEAR(`enrolment_date`) AS `anno`,
+       COUNT(*) AS `numero_iscritti`
+FROM `students`
+GROUP BY YEAR(`enrolment_date`)
+ORDER BY `anno`;
+
+/*
+2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+*/
+SELECT `teachers`.`office_address` , 
+	COUNT(*) AS `counter`
+FROM `teachers`
+GROUP BY `office_address`
+ORDER BY `counter` DESC;
+
+/*
+3. Calcolare la media dei voti di ogni appello d'esame
+*/
+SELECT `es`.`exam_id`,
+       TRUNCATE(AVG(`es`.`vote`), 2) AS `media_voti_troncato`,
+       ROUND(AVG(`es`.`vote`), 2) AS `media_voti_arrot`
+FROM `exam_student` AS `es`
+GROUP BY `es`.`exam_id`
+ORDER BY `media_voti` desc;
+
+/*
+4. Contare quanti corsi di laurea ci sono per ogni dipartimento
+*/
+SELECT `departments`.`name`, COUNT(*) AS `counter`
+FROM `departments`
+	JOIN `degrees`
+		ON `degrees`.`department_id` = `departments`.`id`
+GROUP BY `departments`.`name`
+ORDER BY `counter` DESC
