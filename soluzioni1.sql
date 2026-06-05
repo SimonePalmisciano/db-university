@@ -18,6 +18,7 @@ WHERE `courses`.`cfu` > "10";
 SELECT *
 FROM `students`
 WHERE YEAR (`students`.`date_of_birth`) <= "1996%" ;
+WHERE (YEAR(NOW()) - YEAR (`students`.`date_of_birth`)) > 30 ;
 
 /*
 4. Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di
@@ -36,7 +37,6 @@ FROM `exams`
 WHERE `exams`.`date` = "2020-06-20" 
 	AND `exams`.`hour` > "14:00"
 	AND `exams`.`hour` < "24:00";
-    
 /*
 6. Selezionare tutti i corsi di laurea magistrale (38)
 */
